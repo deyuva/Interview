@@ -1,0 +1,87 @@
+# Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+
+# An input string is valid if:
+
+#  1 - Open brackets must be closed by the same type of brackets.
+#  2 - Open brackets must be closed in the correct order.
+
+
+# Example 1:
+
+# Input: s = "()"
+# Output: true
+
+# Example 2:
+
+# Input: s = "()[]{}"
+# Output: true
+
+# Example 3:
+
+# Input: s = "(]"
+# Output: false
+
+# Example 4:
+
+# Input: s = "([)]"
+# Output: false
+
+# Example 5:
+
+# Input: s = "{[]}"
+# Output: true
+
+
+# SOLUTION 1 algorithem:
+
+# 1 - create a stack
+
+# 2-  create an index for the string, i = 0
+
+# 3 - iterate over the string and perform:
+
+      if the current char is an opening bracket, push it into the stack.
+      
+      if the current char is a closing bracket:
+        try to pop the stack and keep the poped value.
+        if the current closing bracket and poped value matched continue.
+        else, return False
+        
+       if finished the string, check if the stack is empty.
+       
+# SOLUTION 1 python
+
+
+def isValid(s: str) -> bool:
+    
+    stack = []
+    close_bracket = [']','}',')']
+    open_bracket = ['[','{','(']
+    open_close = {"(": ")", "[": "]", "{": "}"}
+    
+    
+    for c in s:
+        if c in open_bracket:
+            stack.append(c)
+            
+        if c in close_bracket:
+            if stack: 
+                popped = stack.pop(0)
+                if open_close[popped] == c:
+                    pass
+                else:
+                    return False
+                
+            else:
+                print(c)
+                return False
+            
+    if stack:
+        return False
+        
+    return True
+
+
+
+
+ 
