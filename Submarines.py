@@ -31,35 +31,41 @@
                 
 # SOLUTION 1 algorithem - 
 
+import numpy
+
+
 def find_subs(mat, rows, cols):
-    
-    grid = {}
-    count = 1
+    grid = numpy.zeros((rows, cols), int)
+    count = 0
     i = 0
     j = 0
     k = 0
-    
-    for i in range(rows):
-        for j in range(cols):
-            k = i + 1
-            
+    flag = 0
+
+    while i < rows:
+        while j < cols:
+
             if mat[i][j] == '.' or grid[i][j] == 1:
-                continue
-            
-            elif mat[i][j] == 'x'
-            
+                pass
+
+
+            elif mat[i][j] == 'x':
                 count += 1
-                
-                while(j + 1) < cols and mat[i][j + 1] =='x'       # try going right, if found 'xx' raise flag
+
+                while (j + 1) < cols and mat[i][j + 1] == 'x':  # try going right, if found 'xx' raise flag
                     flag = 1
                     j += 1
-                    
-                if flag == 0:                                     # if flag is not raised found only 'x' should try do down
-                    while (k + i) < rows and mat[i + k][j] == 'x'
-                        grid[((i + k), j)] == 1
-                    k += 1
-                
-             
-            
+
+                if flag == 0:                                   # if flag is not raised found only 'x' should try do down
+                    while (k + i) < rows and mat[i + k][j] == 'x':
+                        grid[((i + k), j)] = 1
+                        k += 1
+            j += 1
+            flag = 0
+        i += 1
+        j = 0
+    return count
+
+
 
 
